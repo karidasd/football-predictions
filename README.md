@@ -36,6 +36,10 @@ No database, no backend servers. Everything runs entirely on **GitHub Actions** 
 - **🧠 Advanced AI Engine:** Fetches Match Winner (1X2), Over/Under, and Both Teams to Score (GG/NG) probabilities using mature Machine Learning algorithms.
 - **💎 VIP Bet of the Day:** An intelligent scanning system that evaluates all daily fixtures and promotes the single highest Expected Value (EV) bet to the top of the dashboard.
 - **📈 Live Value Bet Detection:** Automatically pulls pre-match odds from top bookmakers (e.g., Bet365) and flags mathematical edge opportunities (where `Probability * Odds > 1.0`).
+- **🔲 Dual Viewing Modes:** Instantly toggle between a visually stunning "Grid View" (VIP cards) and a dense, Zulubet-style "Table View" for rapid scanning of dozens of matches.
+- **🎯 Instant Short Tips:** Extrapolates complex AI advice into instantly readable badges (e.g., `1`, `X2`, `12`) for quick decision-making.
+- **🎵 Ambient Experience:** Integrated background music player with auto-play logic and UI toggles, providing a premium feel.
+- **🔴 Live Scores Integration:** Built-in live score widget using API-Sports web components for real-time tracking.
 - **🤖 100% CI/CD Automation:**
   - **🌅 Morning Cron (06:00 UTC):** Wakes up, queries the API, calculates stats, writes to `predictions.json`, and deploys the new frontend automatically.
   - **🌃 Evening Cron (23:00 UTC):** Audits the day's matches, grabs final scores, grades the AI's performance, and logs accuracy to `history.json`.
