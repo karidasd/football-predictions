@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function fetchData() {
     try {
-        // Fetch Predictions
         const predRes = await fetch('data/predictions.json');
         if (predRes.ok) {
             const predData = await predRes.json();
@@ -13,7 +12,6 @@ async function fetchData() {
             renderError('predictions-container', 'Predictions for today are not available yet.');
         }
 
-        // Fetch History
         const histRes = await fetch('data/history.json');
         if (histRes.ok) {
             const histData = await histRes.json();
@@ -55,11 +53,34 @@ function renderPredictions(data) {
             `;
         }
 
+        // Generate probability bars
+        const probHtml = `
+            <div style="margin-top: 1.5rem; font-size: 0.85rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                    <span style="color:var(--text-secondary)">Home Win (${match.percent_home})</span>
+                    <span style="color:var(--text-secondary)">Draw (${match.percent_draw})</span>
+                    <span style="color:var(--text-secondary)">Away Win (${match.percent_away})</span>
+                </div>
+                <div style="display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: rgba(255,255,255,0.1);">
+                    <div style="width: ${match.percent_home}; background: var(--accent-1);"></div>
+                    <div style="width: ${match.percent_draw}; background: var(--text-secondary);"></div>
+                    <div style="width: ${match.percent_away}; background: var(--accent-3);"></div>
+                </div>
+            </div>
+            <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
+                <strong style="color: var(--accent-2); font-size: 0.8rem; text-transform: uppercase;">AI Advice</strong><br>
+                <span style="font-size: 0.95rem; font-weight: 600;">${match.advice}</span>
+            </div>
+        `;
+
         const card = document.createElement('div');
         card.className = 'prediction-card glass-card';
         card.style.position = 'relative';
         card.innerHTML = `
             <div class="status-badge ${statusClass}">${match.status}</div>
+            <div style="font-size: 0.75rem; color: var(--text-secondary); text-align: center; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">
+                ${match.league}
+            </div>
             <div class="match-teams">
                 <div class="team">
                     <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzMzIi8+PC9zdmc+'">
@@ -71,20 +92,7 @@ function renderPredictions(data) {
                     <span class="team-name">${match.away_team}</span>
                 </div>
             </div>
-            <div class="predictions-tags">
-                <div class="tag">
-                    <span class="tag-label">1x2 Winner</span>
-                    <span class="tag-value">${match.prediction_1x2}</span>
-                </div>
-                <div class="tag">
-                    <span class="tag-label">Both Score</span>
-                    <span class="tag-value">${match.prediction_gg}</span>
-                </div>
-                <div class="tag">
-                    <span class="tag-label">Goals</span>
-                    <span class="tag-value">${match.prediction_ou}</span>
-                </div>
-            </div>
+            ${probHtml}
             ${actualResultsHtml}
         `;
         container.appendChild(card);
@@ -96,10 +104,7 @@ function renderHistory(data) {
     container.innerHTML = '';
 
     const calcAcc = (correct, total) => total > 0 ? Math.round((correct / total) * 100) : 0;
-    
     const acc1x2 = calcAcc(data.correct_1x2, data.total_1x2);
-    const accGG = calcAcc(data.correct_gg, data.total_gg);
-    const accOU = calcAcc(data.correct_ou, data.total_ou);
 
     const getColorClass = (val) => {
         if(val >= 65) return 'high';
@@ -108,9 +113,7 @@ function renderHistory(data) {
     };
 
     const stats = [
-        { label: "Match Winner (1x2)", value: acc1x2, total: data.total_1x2 },
-        { label: "Both Teams To Score", value: accGG, total: data.total_gg },
-        { label: "Over/Under 2.5", value: accOU, total: data.total_ou }
+        { label: "Winner Prediction Accuracy", value: acc1x2, total: data.total_1x2 }
     ];
 
     stats.forEach(stat => {
