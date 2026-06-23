@@ -22,7 +22,10 @@
                 "draw": "3.35",
                 "away": "3.20"
             },
-            "status": "Pending"
+            "status": "Finished",
+            "home_goals": 3,
+            "away_goals": 2,
+            "correct_1x2": true
         },
         {
             "fixture_id": 1524798,
@@ -45,7 +48,10 @@
                 "draw": "3.75",
                 "away": "2.25"
             },
-            "status": "Pending"
+            "status": "Finished",
+            "home_goals": 3,
+            "away_goals": 1,
+            "correct_1x2": true
         },
         {
             "fixture_id": 1525051,
@@ -64,7 +70,10 @@
             "prediction_ou": "Over 2.5",
             "advice": "Combo Winner : Uni\u00f3n Villa Krause and +1.5 goals",
             "odds": null,
-            "status": "Pending"
+            "status": "Pending",
+            "home_goals": null,
+            "away_goals": null,
+            "correct_1x2": false
         },
         {
             "fixture_id": 1489400,
@@ -87,7 +96,10 @@
                 "draw": "4.10",
                 "away": "1.50"
             },
-            "status": "Pending"
+            "status": "Finished",
+            "home_goals": 1,
+            "away_goals": 2,
+            "correct_1x2": false
         },
         {
             "fixture_id": 1532460,
@@ -106,7 +118,10 @@
             "prediction_ou": "Under 2.5",
             "advice": "Winner : New England Mutiny W",
             "odds": null,
-            "status": "Pending"
+            "status": "Pending",
+            "home_goals": null,
+            "away_goals": null,
+            "correct_1x2": false
         }
     ]
 }

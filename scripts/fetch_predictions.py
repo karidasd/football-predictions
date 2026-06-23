@@ -91,6 +91,17 @@ def process_day(date_obj, filename, data_dir):
         odds_data = get_odds(fix_id)
         time.sleep(0.15) 
 
+        status_short = f['fixture']['status']['short']
+        is_finished = status_short in ['FT', 'AET', 'PEN']
+        home_goals = f['goals']['home']
+        away_goals = f['goals']['away']
+        
+        correct_1x2 = False
+        if is_finished and home_goals is not None and away_goals is not None:
+            actual_1x2 = "1" if home_goals > away_goals else "2" if away_goals > home_goals else "X"
+            short_tip = generate_short_tip(win_percent)
+            correct_1x2 = actual_1x2 in short_tip
+
         predictions.append({
             "fixture_id": fix_id,
             "date": f['fixture']['date'],
@@ -108,7 +119,10 @@ def process_day(date_obj, filename, data_dir):
             "prediction_ou": "Over 2.5" if home_g + away_g > 2.5 else "Under 2.5",
             "advice": advice,
             "odds": odds_data,
-            "status": "Pending"
+            "status": "Finished" if is_finished else "Pending" if status_short == 'NS' else "In Play",
+            "home_goals": home_goals if is_finished else None,
+            "away_goals": away_goals if is_finished else None,
+            "correct_1x2": correct_1x2
         })
         
     output_file = os.path.join(data_dir, filename)

@@ -167,9 +167,13 @@ function createMatchCard(match, isVIP) {
     
     let actualResultsHtml = '';
     if (isFinished) {
+        let resultIcon = '';
+        if (match.correct_1x2 !== undefined) {
+            resultIcon = match.correct_1x2 ? '<span style="color: #4CAF50; margin-left: 5px;">✅ Won</span>' : '<span style="color: #f44336; margin-left: 5px;">❌ Lost</span>';
+        }
         actualResultsHtml = `
             <div style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: var(--text-secondary);">
-                Score: <span style="color:var(--text-primary); font-weight: bold;">${match.home_goals} - ${match.away_goals}</span>
+                Score: <span style="color:var(--text-primary); font-weight: bold;">${match.home_goals} - ${match.away_goals}</span> ${resultIcon}
             </div>
         `;
     }
