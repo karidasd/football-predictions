@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Predictions Script
       env:
-        API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        API_FOOTBALL_KEY: "38f1c8e59dd3c061104a4ffd98f0fe1e"
       run: |
         python scripts/fetch_predictions.py
 

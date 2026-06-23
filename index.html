@@ -59,6 +59,22 @@
         <p>Predictions are based on statistical models and historical data. Not financial advice.</p>
     </footer>
 
+    <!-- API Sports Widget Configuration -->
+    <api-sports-widget data-type="config"
+      data-key="38f1c8e59dd3c061104a4ffd98f0fe1e"
+      data-sport="football"
+      data-lang="en"
+      data-theme="white"
+      data-show-errors="true"
+    ></api-sports-widget>
+    
+    <!-- API Sports Leagues Widget -->
+    <div class="container" style="margin-bottom: 4rem;">
+        <h2 class="section-title text-center">Supported Leagues</h2>
+        <api-sports-widget data-type="leagues"></api-sports-widget>
+    </div>
+
+    <script type="module" src="https://widgets.api-sports.io/2.0.0/widgets.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
