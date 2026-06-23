@@ -16,6 +16,11 @@
             "prediction_gg": "GG",
             "prediction_ou": "Over 2.5",
             "advice": "Combo Winner : Norway and +1.5 goals",
+            "odds": {
+                "home": "2.20",
+                "draw": "3.35",
+                "away": "3.20"
+            },
             "status": "Pending"
         },
         {
@@ -33,6 +38,11 @@
             "prediction_gg": "GG",
             "prediction_ou": "Over 2.5",
             "advice": "Double chance : Denton Diablos or draw",
+            "odds": {
+                "home": "2.45",
+                "draw": "3.75",
+                "away": "2.25"
+            },
             "status": "Pending"
         },
         {
@@ -50,6 +60,7 @@
             "prediction_gg": "GG",
             "prediction_ou": "Over 2.5",
             "advice": "Combo Winner : Uni\u00f3n Villa Krause and +1.5 goals",
+            "odds": null,
             "status": "Pending"
         },
         {
@@ -67,6 +78,11 @@
             "prediction_gg": "NG",
             "prediction_ou": "Under 2.5",
             "advice": "Double chance : Jordan or draw",
+            "odds": {
+                "home": "6.50",
+                "draw": "4.10",
+                "away": "1.50"
+            },
             "status": "Pending"
         },
         {
@@ -84,74 +100,7 @@
             "prediction_gg": "NG",
             "prediction_ou": "Under 2.5",
             "advice": "Winner : New England Mutiny W",
-            "status": "Pending"
-        },
-        {
-            "fixture_id": 1532771,
-            "date": "2026-06-23T08:00:00+00:00",
-            "league": "League Two",
-            "home_team": "Changchun Xidu",
-            "home_logo": "https://media.api-sports.io/football/teams/23132.png",
-            "away_team": "Rizhao Yuqi",
-            "away_logo": "https://media.api-sports.io/football/teams/21328.png",
-            "prediction_1x2": "Win or draw",
-            "percent_home": "10%",
-            "percent_draw": "45%",
-            "percent_away": "45%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Combo Double chance : draw or Rizhao Yuqi and -3.5 goals",
-            "status": "Pending"
-        },
-        {
-            "fixture_id": 1532772,
-            "date": "2026-06-23T08:00:00+00:00",
-            "league": "League Two",
-            "home_team": "Qingdao Red Lions",
-            "home_logo": "https://media.api-sports.io/football/teams/5679.png",
-            "away_team": "Dalian Kewei",
-            "away_logo": "https://media.api-sports.io/football/teams/27620.png",
-            "prediction_1x2": "Win or draw",
-            "percent_home": "10%",
-            "percent_draw": "45%",
-            "percent_away": "45%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Combo Double chance : draw or Dalian Kewei and -3.5 goals",
-            "status": "Pending"
-        },
-        {
-            "fixture_id": 1532773,
-            "date": "2026-06-23T08:00:00+00:00",
-            "league": "League Two",
-            "home_team": "Shanghai Second",
-            "home_logo": "https://media.api-sports.io/football/teams/27619.png",
-            "away_team": "Dalian Yingbo B",
-            "away_logo": "https://media.api-sports.io/football/teams/27621.png",
-            "prediction_1x2": "Win or draw",
-            "percent_home": "10%",
-            "percent_draw": "45%",
-            "percent_away": "45%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Combo Double chance : draw or Dalian Yingbo B and -3.5 goals",
-            "status": "Pending"
-        },
-        {
-            "fixture_id": 1532774,
-            "date": "2026-06-23T08:00:00+00:00",
-            "league": "League Two",
-            "home_team": "Xiamen Feilu",
-            "home_logo": "https://media.api-sports.io/football/teams/27622.png",
-            "away_team": "Hubei Chufeng Heli",
-            "away_logo": "https://media.api-sports.io/football/teams/5660.png",
-            "prediction_1x2": "Win or draw",
-            "percent_home": "45%",
-            "percent_draw": "45%",
-            "percent_away": "10%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Double chance : Xiamen Feilu or draw",
+            "odds": null,
             "status": "Pending"
         }
     ]
