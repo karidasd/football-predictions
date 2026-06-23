@@ -66,11 +66,20 @@
         </section>
 
         <section id="today" class="predictions-section">
-            <div class="section-header">
-                <h2 class="section-title">Today's Fixtures</h2>
+            <div class="section-header" style="flex-wrap: wrap; gap: 1rem;">
+                <h2 class="section-title" style="margin: 0;">Match Predictions</h2>
+                <div class="date-tabs">
+                    <button class="date-tab" id="tab-yesterday">Yesterday</button>
+                    <button class="date-tab active" id="tab-today">Today</button>
+                    <button class="date-tab" id="tab-tomorrow">Tomorrow</button>
+                </div>
+                <div class="view-toggle">
+                    <button id="toggle-grid" class="view-btn active" title="Grid View">🔲 Grid</button>
+                    <button id="toggle-table" class="view-btn" title="Table View">📋 Table</button>
+                </div>
                 <div class="date-badge" id="current-date">Loading...</div>
             </div>
-            <div class="predictions-grid" id="predictions-container">
+            <div class="predictions-grid grid-view" id="predictions-container">
                 <!-- Injected via JS -->
                 <div class="prediction-card glass-card skeleton" style="height: 250px;"></div>
                 <div class="prediction-card glass-card skeleton" style="height: 250px;"></div>

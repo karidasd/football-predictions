@@ -1,8 +1,9 @@
 import os
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
+import shutil
 
 API_KEY = os.environ.get('API_FOOTBALL_KEY')
 API_URL = "https://v3.football.api-sports.io"
@@ -16,11 +17,11 @@ def fetch_api(endpoint, params):
         return data.get('response', [])
     return None
 
-def get_todays_fixtures():
-    today = datetime.now().strftime('%Y-%m-%d')
-    fixtures = fetch_api("fixtures", {"date": today})
+def get_fixtures_for_date(date_str):
+    fixtures = fetch_api("fixtures", {"date": date_str})
     if not fixtures: return []
-    return fixtures[:15]
+    # Limit to 10 fixtures per day to save API limits
+    return fixtures[:10]
 
 def get_prediction(fixture_id):
     preds = fetch_api("predictions", {"fixture": fixture_id})
@@ -28,15 +29,12 @@ def get_prediction(fixture_id):
     return None
 
 def get_odds(fixture_id):
-    # Fetch pre-match odds
     odds_resp = fetch_api("odds", {"fixture": fixture_id})
     if odds_resp and len(odds_resp) > 0:
         bookmakers = odds_resp[0].get('bookmakers', [])
         if not bookmakers: return None
-        # We take the first bookmaker available (usually 8xBet, Bet365 etc)
         bookmaker = bookmakers[0]
         bets = bookmaker.get('bets', [])
-        # Find Match Winner odds (usually id 1)
         for bet in bets:
             if bet['name'] == 'Match Winner' or bet['id'] == 1:
                 vals = bet.get('values', [])
@@ -46,17 +44,30 @@ def get_odds(fixture_id):
                 return {"home": home_odd, "draw": draw_odd, "away": away_odd}
     return None
 
-def main():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    data_dir = os.path.join(script_dir, '..', 'data')
-    os.makedirs(data_dir, exist_ok=True)
-    
-    fixtures = get_todays_fixtures()
+def generate_short_tip(win_percent):
+    try:
+        h = float(str(win_percent.get('home', '33%')).replace('%',''))
+        d = float(str(win_percent.get('draw', '33%')).replace('%',''))
+        a = float(str(win_percent.get('away', '33%')).replace('%',''))
+        
+        if h >= 50: return "1"
+        if a >= 50: return "2"
+        if h > 40 and d > 30: return "1X"
+        if a > 40 and d > 30: return "X2"
+        if d >= 40: return "X"
+        if h > a: return "1X"
+        return "X2"
+    except:
+        return "1X2"
+
+def process_day(date_obj, filename, data_dir):
+    date_str = date_obj.strftime('%Y-%m-%d')
+    fixtures = get_fixtures_for_date(date_str)
     predictions = []
     
     for f in fixtures:
         fix_id = f['fixture']['id']
-        print(f"Fetching prediction & odds for {fix_id}...")
+        print(f"Fetching prediction & odds for {fix_id} on {date_str}...")
         
         pred_data = get_prediction(fix_id)
         if not pred_data: continue
@@ -69,9 +80,9 @@ def main():
         home_g = float(str(home_goals_pred).replace('-','0') if home_goals_pred else 0)
         away_g = float(str(away_goals_pred).replace('-','0') if away_goals_pred else 0)
         
-        time.sleep(0.15) # rate limit
+        time.sleep(0.15) 
         odds_data = get_odds(fix_id)
-        time.sleep(0.15) # rate limit
+        time.sleep(0.15) 
 
         predictions.append({
             "fixture_id": fix_id,
@@ -82,20 +93,38 @@ def main():
             "away_team": f['teams']['away']['name'],
             "away_logo": f['teams']['away']['logo'],
             "prediction_1x2": pred_data['predictions']['winner']['comment'],
+            "short_tip": generate_short_tip(win_percent),
             "percent_home": win_percent.get('home', '33%'),
             "percent_draw": win_percent.get('draw', '33%'),
             "percent_away": win_percent.get('away', '33%'),
             "prediction_gg": "GG" if home_goals_pred and away_goals_pred and str(home_goals_pred) != "0" and str(away_goals_pred) != "0" else "NG",
             "prediction_ou": "Over 2.5" if home_g + away_g > 2.5 else "Under 2.5",
             "advice": advice,
-            "odds": odds_data, # Added odds data
+            "odds": odds_data,
             "status": "Pending"
         })
         
-    output_file = os.path.join(data_dir, 'predictions.json')
+    output_file = os.path.join(data_dir, filename)
     with open(output_file, 'w') as f:
-        json.dump({"date": datetime.now().strftime('%Y-%m-%d'), "matches": predictions}, f, indent=4)
+        json.dump({"date": date_str, "matches": predictions}, f, indent=4)
     print(f"Saved {len(predictions)} predictions to {output_file}")
+
+def main():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(script_dir, '..', 'data')
+    os.makedirs(data_dir, exist_ok=True)
+    
+    today = datetime.now()
+    yesterday = today - timedelta(days=1)
+    tomorrow = today + timedelta(days=1)
+    
+    # Generate 3 files
+    process_day(yesterday, 'predictions_yesterday.json', data_dir)
+    process_day(today, 'predictions_today.json', data_dir)
+    process_day(tomorrow, 'predictions_tomorrow.json', data_dir)
+    
+    # We also keep predictions.json as an alias for today to not break backward compatibility
+    shutil.copyfile(os.path.join(data_dir, 'predictions_today.json'), os.path.join(data_dir, 'predictions.json'))
 
 if __name__ == "__main__":
     main()

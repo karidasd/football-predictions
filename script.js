@@ -1,7 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetchData();
+    fetchData('today');
     setupMusicPlayer();
+    setupTabsAndView();
 });
+
+function setupTabsAndView() {
+    const tabs = {
+        'yesterday': document.getElementById('tab-yesterday'),
+        'today': document.getElementById('tab-today'),
+        'tomorrow': document.getElementById('tab-tomorrow')
+    };
+
+    for (const [day, el] of Object.entries(tabs)) {
+        if (!el) continue;
+        el.addEventListener('click', () => {
+            Object.values(tabs).forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            fetchData(day);
+        });
+    }
+
+    const gridBtn = document.getElementById('toggle-grid');
+    const tableBtn = document.getElementById('toggle-table');
+    const container = document.getElementById('predictions-container');
+
+    if(gridBtn && tableBtn) {
+        gridBtn.addEventListener('click', () => {
+            gridBtn.classList.add('active');
+            tableBtn.classList.remove('active');
+            container.classList.remove('table-view');
+            container.classList.add('grid-view');
+        });
+
+        tableBtn.addEventListener('click', () => {
+            tableBtn.classList.add('active');
+            gridBtn.classList.remove('active');
+            container.classList.remove('grid-view');
+            container.classList.add('table-view');
+        });
+    }
+}
 
 function setupMusicPlayer() {
     const music = document.getElementById('bg-music');
@@ -32,25 +70,36 @@ function setupMusicPlayer() {
     });
 }
 
-async function fetchData() {
+async function fetchData(dayStr = 'today') {
+    const container = document.getElementById('predictions-container');
+    if(container) container.innerHTML = '<div class="prediction-card glass-card skeleton" style="height: 250px;"></div>';
+
     try {
         const timestamp = new Date().getTime();
-        const predRes = await fetch(`data/predictions.json?t=${timestamp}`);
+        let predData = null;
+        
+        const predRes = await fetch(`data/predictions_${dayStr}.json?t=${timestamp}`);
         if (predRes.ok) {
-            const predData = await predRes.json();
+            predData = await predRes.json();
+        } else if (dayStr === 'today') {
+            const fbRes = await fetch(`data/predictions.json?t=${timestamp}`);
+            if (fbRes.ok) predData = await fbRes.json();
+        }
+
+        if (predData && predData.matches) {
+            document.getElementById('current-date').textContent = predData.date || dayStr;
             renderPredictions(predData);
         } else {
-            renderError('predictions-container', 'Predictions for today are not available yet.');
+            renderError('predictions-container', `Predictions for ${dayStr} are not available yet.`);
+            document.getElementById('botd-container').innerHTML = '';
+            document.getElementById('bet-of-the-day').style.display = 'none';
         }
 
         const histRes = await fetch(`data/history.json?t=${timestamp}`);
         if (histRes.ok) {
             const histData = await histRes.json();
             renderHistory(histData);
-        } else {
-            renderError('stats-container', 'History data is not available yet.');
         }
-
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -90,7 +139,7 @@ function renderPredictions(data) {
     }
 
     if (!data.matches || data.matches.length === 0) {
-        container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--text-secondary);">No fixtures scheduled for today.</p>';
+        container.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color: var(--text-secondary);">No fixtures scheduled for this day.</p>';
         return;
     }
 
@@ -169,7 +218,7 @@ function createMatchCard(match, isVIP) {
     }
 
     const probHtml = `
-        <div style="margin-top: 1.5rem; font-size: 0.85rem;">
+        <div class="prob-container" style="margin-top: 1.5rem; font-size: 0.85rem;">
             <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
                 <span style="color:var(--text-secondary)">Home (${match.percent_home})</span>
                 <span style="color:var(--text-secondary)">Draw (${match.percent_draw})</span>
@@ -181,33 +230,37 @@ function createMatchCard(match, isVIP) {
                 <div style="width: ${match.percent_away}; background: var(--accent-3);"></div>
             </div>
         </div>
-        ${oddsHtml}
-        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
-            <strong style="color: var(--accent-2); font-size: 0.8rem; text-transform: uppercase;">AI Advice</strong><br>
-            <span style="font-size: 0.95rem; font-weight: 600;">${match.advice}</span>
-        </div>
     `;
+    
+    // Short tip logic
+    const shortTip = match.short_tip || '1X2';
+    const tipBadge = `<div class="short-tip-wrapper"><div class="short-tip-badge">${shortTip}</div></div>`;
 
     const card = document.createElement('div');
     card.className = `prediction-card glass-card ${isVIP ? 'vip-card' : ''}`;
-    card.style.position = 'relative';
     card.innerHTML = `
+        ${tipBadge}
         <div class="status-badge ${statusClass}">${match.status}</div>
-        <div style="font-size: 0.75rem; color: var(--text-secondary); text-align: center; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">
+        <div class="match-header" style="flex-direction: column; text-align: center; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">
             ${match.league}
         </div>
-        <div class="match-teams">
-            <div class="team">
-                <img src="${match.home_logo}" alt="${match.home_team}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzMzIi8+PC9zdmc+'">
-                <span class="team-name">${match.home_team}</span>
+        <div class="match-teams" style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="team" style="text-align:center;">
+                <img src="${match.home_logo}" alt="${match.home_team}" style="width:40px; height:40px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzMzIi8+PC9zdmc+'">
+                <span class="team-name" style="display:block; margin-top:0.5rem; font-weight:bold;">${match.home_team}</span>
             </div>
-            <div class="vs">VS</div>
-            <div class="team">
-                <img src="${match.away_logo}" alt="${match.away_team}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzMzIi8+PC9zdmc+'">
-                <span class="team-name">${match.away_team}</span>
+            <div class="vs" style="font-weight:900; color:var(--text-secondary);">VS</div>
+            <div class="team" style="text-align:center;">
+                <img src="${match.away_logo}" alt="${match.away_team}" style="width:40px; height:40px;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzMzIi8+PC9zdmc+'">
+                <span class="team-name" style="display:block; margin-top:0.5rem; font-weight:bold;">${match.away_team}</span>
             </div>
         </div>
         ${probHtml}
+        ${oddsHtml}
+        <div class="ai-advice" style="margin-top: 1rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 8px; text-align: center;">
+            <strong style="color: var(--accent-2); font-size: 0.8rem; text-transform: uppercase;">AI Advice</strong><br>
+            <span style="font-size: 0.95rem; font-weight: 600;">${match.advice}</span>
+        </div>
         ${actualResultsHtml}
     `;
     return card;
