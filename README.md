@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://img.icons8.com/?size=512&id=uPj7yW9Hh5vT&format=png" alt="Logo" width="100">
+  <img src="assets/logo.png" alt="Logo" width="140" style="border-radius: 50%;">
   
   <h1 align="center">AI-Powered Football Predictions ⚽</h1>
 

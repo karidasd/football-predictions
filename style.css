@@ -95,7 +95,14 @@ body {
 
 /* Hero Section */
 .hero-section {
-    padding: 6rem 0 4rem;
+    padding: 4rem 0 2rem 0;
+}
+.main-logo {
+    width: 120px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    border: 2px solid var(--accent-1);
+    margin-bottom: 1.5rem;
 }
 .hero-title {
     font-size: 4rem;
