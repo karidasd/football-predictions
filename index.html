@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Football Predictor | Daily ML Match Forecasts</title>
+    <meta name="description" content="Daily football match predictions powered by Random Forest and XGBoost machine learning models.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="background-glow glow-2"></div>
+    
+    <header class="glass-header">
+        <div class="container header-content">
+            <div class="logo">
+                <span class="gradient-text">Predict</span>ML
+            </div>
+            <nav>
+                <a href="#today" class="nav-link active">Today's Matches</a>
+                <a href="#history" class="nav-link">Track Record</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="hero" class="hero-section text-center">
+            <h1 class="hero-title">AI-Powered Football <br><span class="gradient-text">Predictions</span></h1>
+            <p class="hero-subtitle">Machine Learning models (Random Forest & XGBoost) analyze stats to predict match outcomes daily.</p>
+        </section>
+
+        <section id="history" class="stats-section">
+            <h2 class="section-title">Model Accuracy Track Record</h2>
+            <div class="stats-grid" id="stats-container">
+                <!-- Injected via JS -->
+                <div class="stat-card glass-card skeleton"></div>
+                <div class="stat-card glass-card skeleton"></div>
+                <div class="stat-card glass-card skeleton"></div>
+            </div>
+        </section>
+
+        <section id="today" class="predictions-section">
+            <div class="section-header">
+                <h2 class="section-title">Today's Fixtures</h2>
+                <div class="date-badge" id="current-date">Loading...</div>
+            </div>
+            <div class="predictions-grid" id="predictions-container">
+                <!-- Injected via JS -->
+                <div class="prediction-card glass-card skeleton" style="height: 250px;"></div>
+                <div class="prediction-card glass-card skeleton" style="height: 250px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Predictions are based on statistical models and historical data. Not financial advice.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
