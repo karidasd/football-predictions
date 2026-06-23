@@ -1,5 +1,84 @@
 {
-    "total_1x2": 16,
-    "correct_1x2": 12,
-    "history_log": []
+    "total_1x2": 19,
+    "correct_1x2": 14,
+    "history_log": [
+        {
+            "fixture_id": 1489401,
+            "date": "2026-06-23T00:00:00+00:00",
+            "league": "World Cup",
+            "home_team": "Norway",
+            "home_logo": "https://media.api-sports.io/football/teams/1090.png",
+            "away_team": "Senegal",
+            "away_logo": "https://media.api-sports.io/football/teams/13.png",
+            "prediction_1x2": null,
+            "short_tip": "1",
+            "percent_home": "50%",
+            "percent_draw": "50%",
+            "percent_away": "0%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Combo Winner : Norway and +1.5 goals",
+            "odds": {
+                "home": "2.20",
+                "draw": "3.35",
+                "away": "3.20"
+            },
+            "status": "Finished",
+            "home_goals": 3,
+            "away_goals": 2,
+            "correct_1x2": true
+        },
+        {
+            "fixture_id": 1524798,
+            "date": "2026-06-23T00:30:00+00:00",
+            "league": "USL League Two",
+            "home_team": "Denton Diablos",
+            "home_logo": "https://media.api-sports.io/football/teams/10066.png",
+            "away_team": "McKinney Chupacabras",
+            "away_logo": "https://media.api-sports.io/football/teams/25943.png",
+            "prediction_1x2": "Win or draw",
+            "short_tip": "1X",
+            "percent_home": "45%",
+            "percent_draw": "45%",
+            "percent_away": "10%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Double chance : Denton Diablos or draw",
+            "odds": {
+                "home": "2.45",
+                "draw": "3.75",
+                "away": "2.25"
+            },
+            "status": "Finished",
+            "home_goals": 3,
+            "away_goals": 1,
+            "correct_1x2": true
+        },
+        {
+            "fixture_id": 1489400,
+            "date": "2026-06-23T03:00:00+00:00",
+            "league": "World Cup",
+            "home_team": "Jordan",
+            "home_logo": "https://media.api-sports.io/football/teams/1548.png",
+            "away_team": "Algeria",
+            "away_logo": "https://media.api-sports.io/football/teams/1532.png",
+            "prediction_1x2": "Win or draw",
+            "short_tip": "1X",
+            "percent_home": "45%",
+            "percent_draw": "45%",
+            "percent_away": "10%",
+            "prediction_gg": "NG",
+            "prediction_ou": "Under 2.5",
+            "advice": "Double chance : Jordan or draw",
+            "odds": {
+                "home": "6.50",
+                "draw": "4.10",
+                "away": "1.50"
+            },
+            "status": "Finished",
+            "home_goals": 1,
+            "away_goals": 2,
+            "correct_1x2": false
+        }
+    ]
 }
