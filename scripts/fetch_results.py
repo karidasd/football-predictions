@@ -75,8 +75,10 @@ def main():
             try: history = json.load(f)
             except: pass
                 
+    existing_fixture_ids = [m.get('fixture_id') for m in history['history_log']]
+            
     for match in updated_matches:
-        if match.get('status') == 'Finished':
+        if match.get('status') == 'Finished' and match.get('fixture_id') not in existing_fixture_ids:
             history['total_1x2'] += 1
             if match.get('correct_1x2'): history['correct_1x2'] += 1
             history['history_log'].append(match)
