@@ -5,21 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setupTabsAndView() {
-    const tabs = {
-        'yesterday': document.getElementById('tab-yesterday'),
-        'today': document.getElementById('tab-today'),
-        'tomorrow': document.getElementById('tab-tomorrow')
-    };
-
-    for (const [day, el] of Object.entries(tabs)) {
-        if (!el) continue;
-        el.addEventListener('click', () => {
-            Object.values(tabs).forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            fetchData(day);
-        });
-    }
-
     const gridBtn = document.getElementById('toggle-grid');
     const tableBtn = document.getElementById('toggle-table');
     const container = document.getElementById('predictions-container');

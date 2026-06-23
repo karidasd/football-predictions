@@ -65,11 +65,18 @@ def process_day(date_obj, filename, data_dir):
     fixtures = get_fixtures_for_date(date_str)
     predictions = []
     
+    api_calls = 0
     for f in fixtures:
+        if len(predictions) >= 5: break
+        if api_calls >= 15: break # Stop searching after 15 failed prediction attempts
+        
         fix_id = f['fixture']['id']
         print(f"Fetching prediction & odds for {fix_id} on {date_str}...")
         
+        time.sleep(0.15) 
         pred_data = get_prediction(fix_id)
+        api_calls += 1
+        
         if not pred_data: continue
             
         win_percent = pred_data['predictions']['percent']
@@ -115,13 +122,9 @@ def main():
     os.makedirs(data_dir, exist_ok=True)
     
     today = datetime.now()
-    yesterday = today - timedelta(days=1)
-    tomorrow = today + timedelta(days=1)
     
-    # Generate 3 files
-    process_day(yesterday, 'predictions_yesterday.json', data_dir)
+    # Generate only today's file to save API limits
     process_day(today, 'predictions_today.json', data_dir)
-    process_day(tomorrow, 'predictions_tomorrow.json', data_dir)
     
     # We also keep predictions.json as an alias for today to not break backward compatibility
     shutil.copyfile(os.path.join(data_dir, 'predictions_today.json'), os.path.join(data_dir, 'predictions.json'))
