@@ -107,67 +107,6 @@
             "advice": "Double chance : Oriente Petrolero or draw",
             "odds": null,
             "status": "Pending"
-        },
-        {
-            "fixture_id": 1489396,
-            "date": "2026-06-22T01:00:00+00:00",
-            "league": "World Cup",
-            "home_team": "New Zealand",
-            "home_logo": "https://media.api-sports.io/football/teams/4673.png",
-            "away_team": "Egypt",
-            "away_logo": "https://media.api-sports.io/football/teams/32.png",
-            "prediction_1x2": "Win or draw",
-            "short_tip": "X2",
-            "percent_home": "10%",
-            "percent_draw": "45%",
-            "percent_away": "45%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Double chance : draw or Egypt",
-            "odds": {
-                "home": "5.50",
-                "draw": "3.80",
-                "away": "1.60"
-            },
-            "status": "Pending"
-        },
-        {
-            "fixture_id": 1525048,
-            "date": "2026-06-22T01:00:00+00:00",
-            "league": "USL League Two",
-            "home_team": "Albion Colorado",
-            "home_logo": "https://media.api-sports.io/football/teams/23108.png",
-            "away_team": "Colorado ISA",
-            "away_logo": "https://media.api-sports.io/football/teams/18891.png",
-            "prediction_1x2": null,
-            "short_tip": "1X",
-            "percent_home": "45%",
-            "percent_draw": "45%",
-            "percent_away": "10%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Combo Winner : Albion Colorado and +3.5 goals",
-            "odds": null,
-            "status": "Pending"
-        },
-        {
-            "fixture_id": 1532262,
-            "date": "2026-06-22T01:30:00+00:00",
-            "league": "USL W League",
-            "home_team": "California Storm II W",
-            "home_logo": "https://media.api-sports.io/football/teams/23893.png",
-            "away_team": "Marin FC Siren W",
-            "away_logo": "https://media.api-sports.io/football/teams/23908.png",
-            "prediction_1x2": "Win or draw",
-            "short_tip": "1",
-            "percent_home": "50%",
-            "percent_draw": "50%",
-            "percent_away": "0%",
-            "prediction_gg": "GG",
-            "prediction_ou": "Over 2.5",
-            "advice": "Combo Double chance : California Storm II W or draw and +1.5 goals",
-            "odds": null,
-            "status": "Pending"
         }
     ]
 }
