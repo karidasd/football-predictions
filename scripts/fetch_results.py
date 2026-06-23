@@ -23,18 +23,13 @@ def evaluate_predictions(match, result):
     if home_goals is None or away_goals is None:
         return match
 
-    # Evaluate 1x2 (The API comment is usually "Win or Draw" or similar)
+    # Evaluate using the Short Tip (e.g., '1', '1X', 'X2')
     actual_1x2 = "1" if home_goals > away_goals else "2" if away_goals > home_goals else "X"
-    # Simplified check for our UI since real prediction is complex text advice
-    predicted_winner = match.get('prediction_1x2', '').lower()
     
-    # Very basic evaluation based on advice text
-    correct_1x2 = False
-    if "win" in predicted_winner:
-        if match['home_team'].lower() in predicted_winner and actual_1x2 == "1": correct_1x2 = True
-        if match['away_team'].lower() in predicted_winner and actual_1x2 == "2": correct_1x2 = True
-    elif "draw" in predicted_winner and actual_1x2 == "X":
-        correct_1x2 = True
+    short_tip = match.get('short_tip', '1X2')
+    
+    # If the actual result character (1, X, or 2) is inside the short tip string, it's correct!
+    correct_1x2 = actual_1x2 in short_tip
 
     match['actual_1x2'] = actual_1x2
     match['correct_1x2'] = correct_1x2
