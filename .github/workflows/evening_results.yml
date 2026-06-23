@@ -36,4 +36,4 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: "Automated daily results and history update"
-        file_pattern: "data/predictions.json data/history.json"
+        file_pattern: "data/*.json"
