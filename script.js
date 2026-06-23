@@ -1,6 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
     fetchData();
+    setupMusicPlayer();
 });
+
+function setupMusicPlayer() {
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+    
+    // Auto-play attempt on first user interaction anywhere on the document
+    document.body.addEventListener('click', () => {
+        if (music.paused && !musicBtn.classList.contains('user-paused')) {
+            music.volume = 0.3; // Low volume for background
+            music.play().then(() => {
+                musicBtn.textContent = '🎵';
+            }).catch(e => console.log("Audio play blocked by browser"));
+        }
+    }, { once: true });
+
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (music.paused) {
+            music.volume = 0.3;
+            music.play();
+            musicBtn.textContent = '🎵';
+            musicBtn.classList.remove('user-paused');
+        } else {
+            music.pause();
+            musicBtn.textContent = '🔇';
+            musicBtn.classList.add('user-paused');
+        }
+    });
+}
 
 async function fetchData() {
     try {
