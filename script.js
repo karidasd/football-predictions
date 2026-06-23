@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function fetchData() {
     try {
-        const predRes = await fetch('data/predictions.json');
+        const timestamp = new Date().getTime();
+        const predRes = await fetch(`data/predictions.json?t=${timestamp}`);
         if (predRes.ok) {
             const predData = await predRes.json();
             renderPredictions(predData);
@@ -12,7 +13,7 @@ async function fetchData() {
             renderError('predictions-container', 'Predictions for today are not available yet.');
         }
 
-        const histRes = await fetch('data/history.json');
+        const histRes = await fetch(`data/history.json?t=${timestamp}`);
         if (histRes.ok) {
             const histData = await histRes.json();
             renderHistory(histData);
