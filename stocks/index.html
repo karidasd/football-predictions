@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATHEX AI Analytics | VIP Greek Stocks Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">📈</span>
+                <span class="logo-text">ATHEX<span class="neon-text">.AI</span></span>
+            </div>
+            <div class="status-indicator">
+                <div class="pulse-dot"></div>
+                <span id="last-update">Updating...</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Stock of the Day Section -->
+        <section class="sotd-section" id="sotd-container" style="display: none;">
+            <div class="section-title">
+                <h2>🌟 Κορυφαία Επιλογή της Ημέρας</h2>
+                <p>Βασισμένη σε Τεχνική Ανάλυση (RSI/MA) και Sentiment (Google News NLP)</p>
+            </div>
+            <div class="sotd-card" id="sotd-card">
+                <!-- SOTD Content will be injected here -->
+            </div>
+        </section>
+
+        <!-- All Stocks Section -->
+        <section class="all-stocks-section">
+            <div class="section-title">
+                <h2>Όλες οι Μετοχές (FTSE 25)</h2>
+            </div>
+            <div class="stocks-grid" id="stocks-grid">
+                <!-- Stock cards will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="disclaimer">
+                <strong>⚠️ ΠΡΟΣΟΧΗ:</strong> Το παρόν αποτελεί καθαρά πειραματικό εργαλείο αλγοριθμικής ανάλυσης δεδομένων και ανάλυσης συναισθήματος (Sentiment NLP). <br>Σε καμία περίπτωση <strong>ΔΕΝ</strong> αποτελεί επενδυτική συμβουλή, προτροπή, ή πρόταση αγοράς/πώλησης μετοχών. Σκοπός της σελίδας είναι αυστηρά εκπαιδευτικός/ερευνητικός.
+            </p>
+            <p>&copy; 2026 ATHEX AI Analytics. Built by AI.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

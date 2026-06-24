@@ -1,0 +1,126 @@
+{
+    "date": "2026-06-24 09:26",
+    "stocks": [
+        {
+            "ticker": "PPC.AT",
+            "name": "ΔΕΗ",
+            "price": 23.0,
+            "change_pct": -0.52,
+            "rsi": 80.1,
+            "tech_tip": "SELL",
+            "sentiment": "Neutral",
+            "sentiment_score": 0.1
+        },
+        {
+            "ticker": "HTO.AT",
+            "name": "ΟΤΕ",
+            "price": 18.91,
+            "change_pct": -0.11,
+            "rsi": 66.1,
+            "tech_tip": "SELL",
+            "sentiment": "Neutral",
+            "sentiment_score": -0.13
+        },
+        {
+            "ticker": "ETE.AT",
+            "name": "Εθνική Τράπεζα",
+            "price": 15.5,
+            "change_pct": -1.27,
+            "rsi": 70.4,
+            "tech_tip": "SELL",
+            "sentiment": "Neutral",
+            "sentiment_score": -0.1
+        },
+        {
+            "ticker": "EUROB.AT",
+            "name": "Eurobank",
+            "price": 4.225,
+            "change_pct": -2.42,
+            "rsi": 67.8,
+            "tech_tip": "SELL",
+            "sentiment": "Bearish",
+            "sentiment_score": -0.18
+        },
+        {
+            "ticker": "ALPHA.AT",
+            "name": "Alpha Bank",
+            "price": 4.04,
+            "change_pct": -2.7,
+            "rsi": 60.8,
+            "tech_tip": "HOLD",
+            "sentiment": "Neutral",
+            "sentiment_score": -0.07
+        },
+        {
+            "ticker": "TPEIR.AT",
+            "name": "Τράπεζα Πειραιώς",
+            "price": 9.214,
+            "change_pct": -2.7,
+            "rsi": 56.3,
+            "tech_tip": "HOLD",
+            "sentiment": "Neutral",
+            "sentiment_score": 0.0
+        },
+        {
+            "ticker": "MOH.AT",
+            "name": "Motor Oil",
+            "price": 38.8,
+            "change_pct": 0.0,
+            "rsi": 44.0,
+            "tech_tip": "HOLD",
+            "sentiment": "Bearish",
+            "sentiment_score": -0.3
+        },
+        {
+            "ticker": "ELPE.AT",
+            "name": "HelleniQ Energy",
+            "price": 10.6,
+            "change_pct": -3.37,
+            "rsi": 51.3,
+            "tech_tip": "HOLD",
+            "sentiment": "Bullish",
+            "sentiment_score": 0.33
+        },
+        {
+            "ticker": "GEKTERNA.AT",
+            "name": "ΓΕΚ ΤΕΡΝΑ",
+            "price": 46.0,
+            "change_pct": -1.08,
+            "rsi": 82.2,
+            "tech_tip": "SELL",
+            "sentiment": "Neutral",
+            "sentiment_score": 0.0
+        },
+        {
+            "ticker": "TITC.AT",
+            "name": "ΤΙΤΑΝ",
+            "price": 52.55,
+            "change_pct": -2.23,
+            "rsi": 59.9,
+            "tech_tip": "HOLD",
+            "sentiment": "Bullish",
+            "sentiment_score": 0.46
+        },
+        {
+            "ticker": "CENER.AT",
+            "name": "Cenergy",
+            "price": 24.16,
+            "change_pct": -7.79,
+            "rsi": 46.9,
+            "tech_tip": "HOLD",
+            "sentiment": "Bullish",
+            "sentiment_score": 0.18
+        },
+        {
+            "ticker": "VIO.AT",
+            "name": "Viohalco",
+            "price": 21.35,
+            "change_pct": -2.29,
+            "rsi": 53.6,
+            "tech_tip": "HOLD",
+            "sentiment": "Neutral",
+            "sentiment_score": 0.06
+        }
+    ],
+    "sotd": "ELPE.AT"
+}
