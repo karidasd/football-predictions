@@ -2,8 +2,8 @@ name: Morning Predictions
 
 on:
   schedule:
-    # Run at 06:00 UTC every day
-    - cron: '0 6 * * *'
+    # Run at 06:17 UTC every day to avoid GitHub Actions queue delays
+    - cron: '17 6 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
