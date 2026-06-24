@@ -3,8 +3,4 @@ pandas
 scikit-learn
 xgboost
 joblib
-yfinance
-vaderSentiment
-deep-translator
-feedparser
-pandas
+urllib3
