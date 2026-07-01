@@ -1,6 +1,6 @@
 {
-    "total_1x2": 47,
-    "correct_1x2": 33,
+    "total_1x2": 50,
+    "correct_1x2": 35,
     "history_log": [
         {
             "fixture_id": 1489401,
@@ -723,6 +723,80 @@
             "home_goals": 0,
             "away_goals": 1,
             "correct_1x2": true
+        },
+        {
+            "fixture_id": 1525172,
+            "date": "2026-06-30T00:00:00+00:00",
+            "league": "USL League Two",
+            "home_team": "Hill Country Lobos",
+            "home_logo": "https://media.api-sports.io/football/teams/23118.png",
+            "away_team": "Lonestar",
+            "away_logo": "https://media.api-sports.io/football/teams/25942.png",
+            "prediction_1x2": "Win or draw",
+            "short_tip": "X2",
+            "percent_home": "10%",
+            "percent_draw": "45%",
+            "percent_away": "45%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Double chance : draw or Lonestar",
+            "odds": null,
+            "status": "Finished",
+            "home_goals": 3,
+            "away_goals": 5,
+            "correct_1x2": true
+        },
+        {
+            "fixture_id": 1562345,
+            "date": "2026-06-30T01:00:00+00:00",
+            "league": "World Cup",
+            "home_team": "Netherlands",
+            "home_logo": "https://media.api-sports.io/football/teams/1118.png",
+            "away_team": "Morocco",
+            "away_logo": "https://media.api-sports.io/football/teams/31.png",
+            "prediction_1x2": "Win or draw",
+            "short_tip": "1X",
+            "percent_home": "45%",
+            "percent_draw": "45%",
+            "percent_away": "10%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Double chance : Netherlands or draw",
+            "odds": {
+                "home": "2.30",
+                "draw": "3.15",
+                "away": "3.20"
+            },
+            "status": "Finished",
+            "home_goals": 1,
+            "away_goals": 1,
+            "correct_1x2": true
+        },
+        {
+            "fixture_id": 1559544,
+            "date": "2026-06-30T08:00:00+00:00",
+            "league": "Premier League",
+            "home_team": "Ulaanbaatar",
+            "home_logo": "https://media.api-sports.io/football/teams/16854.png",
+            "away_team": "Central Stallions",
+            "away_logo": "https://media.api-sports.io/football/teams/22067.png",
+            "prediction_1x2": null,
+            "short_tip": "1X",
+            "percent_home": "45%",
+            "percent_draw": "45%",
+            "percent_away": "10%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Winner : Ulaanbaatar",
+            "odds": {
+                "home": "1.33",
+                "draw": "5.00",
+                "away": "6.00"
+            },
+            "status": "Finished",
+            "home_goals": 2,
+            "away_goals": 3,
+            "correct_1x2": false
         }
     ]
 }
