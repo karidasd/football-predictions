@@ -1,6 +1,6 @@
 {
-    "total_1x2": 112,
-    "correct_1x2": 83,
+    "total_1x2": 114,
+    "correct_1x2": 85,
     "history_log": [
         {
             "fixture_id": 1489401,
@@ -2265,6 +2265,58 @@
             "home_goals": 2,
             "away_goals": 3,
             "correct_1x2": false
+        },
+        {
+            "fixture_id": 1498633,
+            "date": "2026-07-14T00:00:00+00:00",
+            "league": "Primera Nacional",
+            "home_team": "Atlanta",
+            "home_logo": "https://media.api-sports.io/football/teams/1948.png",
+            "away_team": "Colegiales",
+            "away_logo": "https://media.api-sports.io/football/teams/8377.png",
+            "prediction_1x2": "Win or draw",
+            "short_tip": "1X",
+            "percent_home": "35%",
+            "percent_draw": "35%",
+            "percent_away": "30%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Double chance : Atlanta or draw",
+            "odds": {
+                "home": "1.77",
+                "draw": "2.80",
+                "away": "5.60"
+            },
+            "status": "Finished",
+            "home_goals": 1,
+            "away_goals": 0,
+            "correct_1x2": true
+        },
+        {
+            "fixture_id": 1544686,
+            "date": "2026-07-14T01:30:00+00:00",
+            "league": "Canadian Championship",
+            "home_team": "Cavalry FC",
+            "home_logo": "https://media.api-sports.io/football/teams/2619.png",
+            "away_team": "Vancouver Whitecaps",
+            "away_logo": "https://media.api-sports.io/football/teams/1603.png",
+            "prediction_1x2": null,
+            "short_tip": "X2",
+            "percent_home": "10%",
+            "percent_draw": "45%",
+            "percent_away": "45%",
+            "prediction_gg": "GG",
+            "prediction_ou": "Over 2.5",
+            "advice": "Combo Winner : Vancouver Whitecaps and +1.5 goals",
+            "odds": {
+                "home": "3.95",
+                "draw": "3.80",
+                "away": "1.73"
+            },
+            "status": "Finished",
+            "home_goals": 1,
+            "away_goals": 1,
+            "correct_1x2": true
         }
     ]
 }
